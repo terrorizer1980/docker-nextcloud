@@ -43,17 +43,17 @@ RUN \
     php8-gd \
     php8-gmp \
     php8-iconv \
-    php8-imagick \
     php8-imap \
     php8-intl \
     php8-ldap \
-    php8-mcrypt \
-    php8-memcached \
     php8-opcache \
     php8-pcntl \
     php8-pdo_mysql \
     php8-pdo_pgsql \
     php8-pdo_sqlite \
+    php8-pecl-imagick \
+    php8-pecl-mcrypt \
+    php8-pecl-memcached \
     php8-pgsql \
     php8-phar \
     php8-posix \
