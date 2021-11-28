@@ -12,18 +12,6 @@ ENV NEXTCLOUD_PATH="/config/www/nextcloud" \
   LD_PRELOAD="/usr/lib/preloadable_libiconv.so"
 
 RUN \
-  echo "**** install build packages ****" && \
-  apk add --no-cache --virtual=build-dependencies --upgrade \
-    autoconf \
-    automake \
-    file \
-    g++ \
-    gcc \
-    make \
-    php8-dev \
-    re2c \
-    samba-dev \
-    zlib-dev && \
   echo "**** install runtime packages ****" && \
   apk add --no-cache --upgrade \
     curl \
@@ -66,16 +54,10 @@ RUN \
     sudo \
     tar \
     unzip && \
-  echo "**** compile smbclient ****" && \
-  git clone git://github.com/eduardok/libsmbclient-php.git /tmp/smbclient && \
-  cd /tmp/smbclient && \
-  phpize7 && \
-  ./configure \
-    --with-php-config=/usr/bin/php-config7 && \
-  make && \
-  make install && \
+  apk add --no-cache \
+    --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+    php8-pecl-smbclient && \
   echo "**** configure php and nginx for nextcloud ****" && \
-  echo "extension="smbclient.so"" > /etc/php8/conf.d/00_smbclient.ini && \
   echo 'apc.enable_cli=1' >> /etc/php8/conf.d/apcu.ini && \
   sed -i \
     -e 's/;opcache.enable.*=.*/opcache.enable=1/g' \
@@ -103,8 +85,6 @@ RUN \
   curl -o /app/nextcloud.tar.bz2 -L \
     https://download.nextcloud.com/server/releases/nextcloud-${NEXTCLOUD_RELEASE}.tar.bz2 && \
   echo "**** cleanup ****" && \
-  apk del --purge \
-    build-dependencies && \
   rm -rf \
     /tmp/*
 
