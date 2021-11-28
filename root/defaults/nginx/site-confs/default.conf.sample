@@ -145,3 +145,5 @@ server {
 
         auth_basic $auth_basic;
         auth_basic_user_file $htpasswd_file;
+    }
+}
