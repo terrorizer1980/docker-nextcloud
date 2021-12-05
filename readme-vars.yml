@@ -78,7 +78,7 @@ app_setup_block: |
 
 # changelog
 changelogs:
-  - { date: "27.11.21:", desc: "Rebasing to alpine 3.15 with php8. Restructure nginx configs ([see changes in base](https://github.com/linuxserver/docker-baseimage-alpine-nginx/pull/84))." }
+  - { date: "05.12.21:", desc: "Rebasing to alpine 3.15 with php8. Restructure nginx configs ([see changes in base](https://github.com/linuxserver/docker-baseimage-alpine-nginx/pull/84))." }
   - { date: "11.09.21:", desc: "Rebasing to alpine 3.14" }
   - { date: "21.03.21:", desc: "Publish `php8` tag for testing." }
   - { date: "25.02.21:", desc: "Nginx default site config updated for v21 (existing users should delete `/config/nginx/site-confs/default.conf` and restart the container)." }
